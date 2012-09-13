@@ -1,8 +1,0 @@
-<project name="mavenproject" default="target" basedir=".">
-    <description>
-        simple example build file
-    </description>
-  <target name="target">
-  </target>
-
-</project>
