@@ -26,6 +26,7 @@
                 <version>1.7</version>
                 <executions>
                     <execution>
+                        <id>ant-embedded</id>
                         <phase>initialize</phase>
                         <goals>
                             <goal>run</goal>
@@ -42,6 +43,20 @@
                                 <mvn pom="../maven-simple-module/pom.xml" mavenHome="${env.M2_HOME}" fork="true">
                                     <arg value="compile"/>
                                 </mvn>
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>ant-from-file</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <dependencyfilesets prefix="maven."/>
+                                <ant antfile="${basedir}/build.xml" target="compile" inheritRefs="true">
+                                </ant>
                             </target>
                         </configuration>
                     </execution>

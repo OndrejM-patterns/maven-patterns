@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="external-ant" default="compile" basedir="."
+         xmlns:artifact="antlib:org.apache.maven.artifact.ant">
+
+    <target name="init">
+        <property environment="env"/>
+    </target>
+    
+    <target name="init-maven" depends="init">
+        <path id="maven-ant-tasks.classpath" >
+            <fileset refid="maven.org.apache.maven:maven-ant-tasks:jar"/>
+        </path>
+        <typedef resource="org/apache/maven/artifact/ant/antlib.xml" uri="antlib:org.apache.maven.artifact.ant"
+                                 classpathref="maven-ant-tasks.classpath" />
+    </target>
+    
+    <target name="compile" depends="init, init-maven">
+        <echo message="External Maven ant tasks"/>
+        <artifact:mvn pom="../maven-simple-module/pom.xml" mavenHome="${env.M2_HOME}" fork="true">
+            <arg value="compile"/>
+        </artifact:mvn>
+    </target>
+</project>
